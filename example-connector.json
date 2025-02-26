@@ -1,0 +1,54 @@
+[
+  {
+    "name": "postgres-connector",
+    "config": {
+      "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+      "topic.prefix": "postgres",
+      "database.user": "postgres",
+      "database.port": "5432",
+      "database.dbname": "belanegara_schedule",
+      "database.hostname": "10.70.0.32",
+      "database.password": "belanegara",
+      "name": "postgres-connector",
+      "schema.include.list": "public",
+      "table.include.list": "public.schedules, public.forms",
+      "plugin.name": "pgoutput",
+      "slot.name": "debezium_slot",
+      "snapshot.mode": "initial",
+      //  "transforms": "key",
+      //  "transforms.key.type": "org.apache.kafka.connect.transforms.ExtractField$Key",
+      //  "transforms.key.field": "id", -> to transform kakfa ke {"id": 1} -> 1
+      "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+      "key.converter.schemas.enable": "false",
+      "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+      "value.converter.schemas.enable": "false",
+      "decimal.format": "NUMERIC",
+      "json.output.decimal.format": "NUMERIC",
+      "decimal.handling.mode": "string"
+    }
+  },
+  {
+    "name": "mysql-connector",
+    "config": {
+      "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+      "topic.prefix": "mysql",
+      "database.user": "root",
+      "schema.history.internal.kafka.topic": "mysql",
+      "database.server.id": "184054",
+      "database.hostname": "192.168.100.219",
+      "database.password": "root",
+      "name": "mysql-connector",
+      "schema.history.internal.kafka.bootstrap.servers": "192.168.100.219:9092",
+      "table.include.list": "laravel.users, laravel.profiles",
+      "database.port": "3309",
+      "database.include.list": "laravel",
+      "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+      "key.converter.schemas.enable": "false",
+      "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+      "value.converter.schemas.enable": "false",
+      "decimal.format": "NUMERIC",
+      "json.output.decimal.format": "NUMERIC",
+      "decimal.handling.mode": "string"
+    }
+  }
+]

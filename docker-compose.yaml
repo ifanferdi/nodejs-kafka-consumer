@@ -1,0 +1,25 @@
+version: '3.0'
+
+services:
+
+  app:
+    container_name: kafka-elasticsearch-connector
+    image: "kafka-elasticsearch-connector"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - target: 3000
+        published: 3000
+    restart: always
+    environment:
+      NODE_ENV:
+      HOST:
+      PORT:
+      APP_URL:
+      ELASTICSEARCH_HOST:
+      ELASTICSEARCH_KEY:
+      ELASTICSEARCH_CBT_BN_INDEX:
+      KAFKA_HOST:
+      KAFKA_TOPIC:
+      KAFKA_GROUP_ID:
